@@ -72,6 +72,6 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsMoving()
     {
-        return rb.velocity.magnitude > 0.1f;
+        return rb.velocity.magnitude > 2.5f;
     }
 }
