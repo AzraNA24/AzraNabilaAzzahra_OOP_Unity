@@ -21,11 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-<<<<<<< HEAD
-  m_Motion: {fileID: 7400000, guid: 49225ce958c9c1143b154021e1951b95, type: 2}
-=======
   m_Motion: {fileID: 7400000, guid: 8f8c38e13dd6fbc40854b676fb04aace, type: 2}
->>>>>>> 56602f3 (CS9 - Tidak ada reaksi saat penembakan)
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -52,11 +48,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-<<<<<<< HEAD
-  m_Motion: {fileID: 7400000, guid: 788c8cb07b2323c4aac68ac10006b686, type: 2}
-=======
   m_Motion: {fileID: 7400000, guid: 11be9a1027fc23542be5071a781b9fb5, type: 2}
->>>>>>> 56602f3 (CS9 - Tidak ada reaksi saat penembakan)
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

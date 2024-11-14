@@ -15,12 +15,11 @@ public class Bullet : MonoBehaviour
 
     private void OnEnable()
     {
-        // Pastikan bullet bergerak ke arah yang benar (misalnya, ke atas)
         rb.velocity = transform.up * bulletSpeed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        gameObject.SetActive(false); // Kembalikan Bullet ke Object Pool jika bertabrakan
+        gameObject.SetActive(false);
     }
 }
