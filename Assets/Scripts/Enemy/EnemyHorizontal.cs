@@ -8,15 +8,14 @@ public class EnemyHorizontal : Enemy
     protected override void Awake()
     {
         base.Awake();
-        // Tentukan apakah akan spawn dari kiri atau kanan
         if (Random.value > 0.5f)
         {
-            transform.position = new Vector2(-10f, Random.Range(-5f, 5f)); // Spawn dari kiri
+            transform.position = new Vector2(-10f, Random.Range(-5f, 5f));
             direction = Vector2.right;
         }
         else
         {
-            transform.position = new Vector2(10f, Random.Range(-5f, 5f)); // Spawn dari kanan
+            transform.position = new Vector2(10f, Random.Range(-5f, 5f));
             direction = Vector2.left;
         }
     }
@@ -24,10 +23,8 @@ public class EnemyHorizontal : Enemy
     protected override void Update()
     {
         base.Update();
-        // Gerakkan Enemy ke arah yang sudah ditentukan
         transform.Translate(direction * speed * Time.deltaTime);
 
-        // Jika sudah keluar dari layar, balik arah
         if (transform.position.x > 12f || transform.position.x < -12f)
         {
             direction = -direction;

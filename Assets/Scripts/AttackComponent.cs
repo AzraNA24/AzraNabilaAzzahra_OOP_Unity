@@ -9,30 +9,26 @@ public class AttackComponent : MonoBehaviour
     [SerializeField] private int damage;
 
     private void OnTriggerEnter2D(Collider2D collision)
+{
+    HitboxComponent hitbox = collision.GetComponent<HitboxComponent>();
+
+    if (hitbox != null)
     {
-        if (collision.CompareTag(gameObject.tag))
+        if (bulletPrefab != null)
         {
-            return;
+            hitbox.Damage(bulletPrefab);
+        }
+        else
+        {
+            hitbox.Damage(damage);
         }
 
-        HitboxComponent hitbox = collision.GetComponent<HitboxComponent>();
-
-        if (hitbox != null)
+        InvincibilityComponent flashComponent = collision.GetComponent<InvincibilityComponent>();
+        if (flashComponent != null && !flashComponent.isInvincible)
         {
-            Debug.Log(bulletPrefab);
-            if (bulletPrefab != null)
-            {
-                hitbox.Damage(bulletPrefab);
-            }
-            else
-            {
-                hitbox.Damage(damage);
-            }
-            InvincibilityComponent flashComponent = collision.GetComponent<InvincibilityComponent>();
-            if (flashComponent != null && flashComponent.isInvincible == false)
-            {
-                flashComponent.StartBlinking();
-            }
+            flashComponent.StartBlinking();
         }
     }
+}
+
 }

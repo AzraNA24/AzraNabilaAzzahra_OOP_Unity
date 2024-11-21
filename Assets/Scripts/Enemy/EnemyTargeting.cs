@@ -1,27 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyTargeting : Enemy
 {
     private Transform player;
-    private float speed = 5f;
+    private float speed = 2f;
+    private float minX, maxX, minY, maxY;
 
-    protected override void Awake()
+    void Start()
     {
-        base.Awake();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        minX = Camera.main.ViewportToWorldPoint(Vector3.zero).x + 1f;
+        maxX = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - 1f;
+        minY = Camera.main.ViewportToWorldPoint(Vector3.zero).y + 1f;
+        maxY = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - 1f;
+        float spawnX = Random.value < 0.5f ? minX : maxX;
+        float spawnY = Random.Range(minY, maxY);
+        transform.position = new Vector3(spawnX, spawnY, transform.position.z);
     }
 
-    protected override void Update()
+    void Update()
     {
-        base.Update();
         if (player != null)
         {
-            // Gerak menuju ke posisi Player
             Vector3 direction = (player.position - transform.position).normalized;
             transform.Translate(direction * speed * Time.deltaTime);
-
-            // Menghadap ke arah Player
-            transform.up = -direction;
         }
     }
 

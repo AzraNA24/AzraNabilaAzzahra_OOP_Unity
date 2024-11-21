@@ -59,4 +59,12 @@ public class WeaponPickup : MonoBehaviour
         weapon.gameObject.SetActive(on);
         Debug.Log($"WeaponPickup: Change weapon {weapon.name} to {(on ? "active" : "nonactive")}");
     }
+    void OnPickup()
+{
+    Collider2D weaponCollider = GetComponent<Collider2D>();
+    if (weaponCollider != null)
+    {
+        weaponCollider.enabled = false;
+    }
+}
 }

@@ -1,31 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 public class HitboxComponent : MonoBehaviour
 {
     [SerializeField] private HealthComponent healthComponent;
-    private InvincibilityComponent invincibilityComponent;
-
+    private InvincibilityComponent flashComponent;
     private void Start()
     {
-        invincibilityComponent = GetComponent<InvincibilityComponent>();
+        flashComponent = GetComponent<InvincibilityComponent>();
     }
-
     public void Damage(int damage)
     {
-        if (healthComponent != null && (invincibilityComponent == null || !invincibilityComponent.isInvincible))
+        if (healthComponent != null && (flashComponent == null || !flashComponent.isInvincible))
         {
             healthComponent.Subtract(damage);
-            invincibilityComponent?.StartBlinking(); // Start blinking after taking damage
         }
     }
 
     public void Damage(Bullet bullet)
     {
-        if (healthComponent != null && (invincibilityComponent == null || !invincibilityComponent.isInvincible))
+        if (healthComponent != null && (flashComponent == null || !flashComponent.isInvincible))
         {
             healthComponent.Subtract(bullet.damage);
-            invincibilityComponent?.StartBlinking(); // Start blinking after taking damage
         }
     }
 }

@@ -4,17 +4,16 @@ public class EnemyBoss : Enemy
 {
         private float speed = 2f;
         private Vector2 direction;
-    public Bullet bulletPrefab;           // Prefab peluru yang akan ditembakkan
-    public Transform bulletSpawnPoint;     // Titik spawn peluru
+    public Bullet bulletPrefab;      
+    public Transform bulletSpawnPoint;
 
-    private float shootInterval = 0.5f;      // Interval waktu antar tembakan dalam detik
+    private float shootInterval = 0.5f;
     private float shootTimer = 0f; 
-        // Timer untuk melacak waktu tembakan
 
     protected override void Awake()
     {
         base.Awake();
-        transform.position = new Vector2(10f, Random.Range(-2f, 4f)); // Spawn dari kanan
+        transform.position = new Vector2(10f, Random.Range(-2f, 4f));
         direction = Vector2.left;
     }
 
@@ -22,17 +21,14 @@ public class EnemyBoss : Enemy
     {
         base.Update();
 
-        // Menembak setiap interval
         shootTimer += Time.deltaTime;
         if (shootTimer >= shootInterval)
         {
             Shoot();
-            shootTimer = 0f; // Reset timer setelah menembak
+            shootTimer = 0f;
         }
 
         transform.Translate(direction * speed * Time.deltaTime);
-
-        // Jika sudah keluar dari layar, balik arah
         if (transform.position.x <= -10f)
         {
             direction = Vector2.right;
