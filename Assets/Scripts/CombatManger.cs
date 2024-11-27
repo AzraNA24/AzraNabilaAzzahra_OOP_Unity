@@ -15,35 +15,53 @@ public class CombatManager : MonoBehaviour
 
     private void Update()
     {
-        // Hitung mundur untuk memulai wave berikutnya
         timer += Time.deltaTime;
 
-        if (timer >= waveInterval && totalEnemies <= 0)
+        if (timer >= waveInterval)
         {
             timer = 0;
-            waveNumber++;
             StartNextWave();
         }
     }
 
     private void StartNextWave()
     {
+        totalEnemies = 0;
+
         foreach (var spawner in enemySpawners)
         {
-            spawner.defaultSpawnCount = waveNumber; // Meningkatkan musuh berdasarkan wave
-            spawner.StartSpawning();
+            if (spawner != null)
+            {
+                spawner.spawnCount = spawner.defaultSpawnCount * waveNumber;
+                totalEnemies += spawner.spawnCount;
+                spawner.isSpawning = true;
+                spawner.StartCoroutine("SpawnEnemies");
+            }
+        }
+
+        waveNumber++;
+    }
+
+    public void StopAllSpawners()
+    {
+        foreach (var spawner in enemySpawners)
+        {
+            if (spawner != null)
+            {
+                spawner.StopSpawning();
+            }
         }
     }
 
-    public void EnemyKilled()
+    public void ResetWaves()
     {
-        totalEnemies--;
-        if (totalEnemies <= 0)
+        waveNumber = 1;
+        timer = 0;
+        foreach (var spawner in enemySpawners)
         {
-            // Semua musuh di wave ini sudah mati, hentikan spawn
-            foreach (var spawner in enemySpawners)
+            if (spawner != null)
             {
-                spawner.StopSpawning();
+                spawner.ResetSpawner();
             }
         }
     }

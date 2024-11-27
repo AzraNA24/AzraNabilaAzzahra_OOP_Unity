@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 2762384952669511911}
   m_Layer: 0
   m_Name: EnemyBoss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
+  combatManager: {fileID: 0}
 --- !u!114 &4823251962849554932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
+  combatManager: {fileID: 0}
   bulletPrefab: {fileID: 0}
   bulletSpawnPoint: {fileID: 0}
 --- !u!114 &5033341229487996128

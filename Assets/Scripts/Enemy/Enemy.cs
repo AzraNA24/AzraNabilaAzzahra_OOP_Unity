@@ -8,6 +8,9 @@ public class Enemy : MonoBehaviour
     protected Rigidbody2D rb;
     protected SpriteRenderer spriteRenderer;
 
+    // Tambahkan CombatManager ke kelas Enemy
+    public CombatManager combatManager;
+
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

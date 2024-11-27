@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: -3706917352385719991}
   m_Layer: 0
   m_Name: EnemyTarg
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,7 +143,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8582215018318545646, guid: 3e7d5e7bb2e0b0e4ea22e26d4b22bdf3, type: 3}
+  m_Sprite: {fileID: 7039095071610232411, guid: 139861dac815c3042887ef7c29880274, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
+  combatManager: {fileID: 0}
 --- !u!114 &389033556608506966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
+  combatManager: {fileID: 0}
 --- !u!114 &-5316601242311897188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2846b1ebdbb8f146bb1241f8642873c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 100
 --- !u!114 &-858769818808346819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738ff690f9bf8fd41915b63b60af0355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthComponent: {fileID: 0}
+  healthComponent: {fileID: 4316633072213190358}
 --- !u!114 &-3706917352385719991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,5 +236,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blinkingCount: 7
   blinkInterval: 0.1
-  blinkMaterial: {fileID: 0}
+  blinkMaterial: {fileID: 2100000, guid: e1031153b79b35e4fa3d5ff03f90aa91, type: 2}
   isInvincible: 0

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3851878493907616356
+--- !u!1 &4064535097752563874
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3534631035153346094}
-  - component: {fileID: 8034222452112335593}
+  - component: {fileID: 1326547275152643236}
+  - component: {fileID: 1199111510664681478}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: EnemySpawnerFor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3534631035153346094
+--- !u!4 &1326547275152643236
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3851878493907616356}
+  m_GameObject: {fileID: 4064535097752563874}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.4301467, y: -0.735592, z: 0.08510132}
@@ -32,15 +32,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8034222452112335593
+--- !u!114 &1199111510664681478
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3851878493907616356}
+  m_GameObject: {fileID: 4064535097752563874}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b1fd2e41cdc9354fa10e7de51d2c967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnedEnemy: {fileID: 6764920880571092109, guid: 16aa54f57cae6e444944d27a28ff8451, type: 3}
+  minimumKillsToIncreaseSpawnCount: 3
+  totalKill: 0
+  spawnInterval: 3
+  spawnCount: 2
+  defaultSpawnCount: 2
+  spawnCountMultiplier: 1
+  multiplierIncreaseCount: 1
+  combatManager: {fileID: 0}
+  isSpawning: 0

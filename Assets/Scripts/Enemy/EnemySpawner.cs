@@ -1,56 +1,66 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Enemy Prefabs")]
-    public GameObject spawnedEnemy;
-    [SerializeField] private int minimumKillsToIncreaseSpawnCount = 6;
+    public Enemy spawnedEnemy;
+
+    [SerializeField] private int minimumKillsToIncreaseSpawnCount = 3;
     public int totalKill = 0;
+    private int totalKillWave = 0;
+
     [SerializeField] private float spawnInterval = 3f;
 
-    [Header("Spawned Enemies Counter")]
-    public int spawnCount = 0;
-    public int defaultSpawnCount = 1;
+    public int spawnCount = 1;
+    public int defaultSpawnCount = 1; 
     public int spawnCountMultiplier = 1;
     public int multiplierIncreaseCount = 1;
 
     public CombatManager combatManager;
+
     public bool isSpawning = false;
 
     private void Start()
     {
         spawnCount = defaultSpawnCount;
+        StartCoroutine(SpawnEnemies());
     }
 
-    public void StartSpawning()
+    private IEnumerator SpawnEnemies()
     {
-        if (!isSpawning)
+        isSpawning = true;
+        while (isSpawning)
         {
-            isSpawning = true;
-            InvokeRepeating(nameof(SpawnEnemies), 0, spawnInterval);
+            for (int i = 0; i < spawnCount; i++)
+            {
+                if (spawnedEnemy != null)
+                {
+                    Instantiate(spawnedEnemy, transform.position, Quaternion.identity);
+                }
+            }
+
+            totalKillWave += spawnCount;
+            if (totalKillWave >= minimumKillsToIncreaseSpawnCount)
+            {
+                totalKillWave = 0;
+                spawnCount += multiplierIncreaseCount * spawnCountMultiplier;
+            }
+
+            yield return new WaitForSeconds(spawnInterval);
         }
     }
 
     public void StopSpawning()
     {
         isSpawning = false;
-        CancelInvoke(nameof(SpawnEnemies));
+        StopAllCoroutines();
     }
 
-    private void SpawnEnemies()
+    public void ResetSpawner()
     {
-        for (int i = 0; i < spawnCount; i++)
-        {
-            Instantiate(spawnedEnemy, transform.position, Quaternion.identity);
-        }
-
-        combatManager.totalEnemies += spawnCount;
-
-        // Tingkatkan jumlah spawn jika total kill mencukupi
-        if (totalKill >= minimumKillsToIncreaseSpawnCount)
-        {
-            totalKill = 0; // Reset kill count
-            spawnCount += spawnCountMultiplier;
-        }
+        spawnCount = defaultSpawnCount;
+        totalKill = 0;
+        totalKillWave = 0;
     }
 }

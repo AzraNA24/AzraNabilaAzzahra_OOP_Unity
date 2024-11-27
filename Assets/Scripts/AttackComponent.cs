@@ -2,33 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
 public class AttackComponent : MonoBehaviour
 {
     [SerializeField] private Bullet bulletPrefab;
     [SerializeField] private int damage;
 
     private void OnTriggerEnter2D(Collider2D collision)
-{
-    HitboxComponent hitbox = collision.GetComponent<HitboxComponent>();
-
-    if (hitbox != null)
     {
-        if (bulletPrefab != null)
-        {
-            hitbox.Damage(bulletPrefab);
-        }
-        else
-        {
-            hitbox.Damage(damage);
-        }
+        HitboxComponent hitbox = collision.GetComponent<HitboxComponent>();
 
-        InvincibilityComponent flashComponent = collision.GetComponent<InvincibilityComponent>();
-        if (flashComponent != null && !flashComponent.isInvincible)
+        if (hitbox != null)
         {
-            flashComponent.StartBlinking();
+            if (bulletPrefab != null)
+            {
+                hitbox.Damage(bulletPrefab, gameObject); // Pass source as gameObject
+            }
+            else
+            {
+                hitbox.Damage(damage, gameObject); // Pass source as gameObject
+            }
+
+            InvincibilityComponent flashComponent = collision.GetComponent<InvincibilityComponent>();
+            if (flashComponent != null && !flashComponent.isInvincible)
+            {
+                flashComponent.StartBlinking();
+            }
         }
     }
-}
-
 }
